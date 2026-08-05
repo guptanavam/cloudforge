@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify
+from models import db, Project
 
 generate_bp = Blueprint("generate", __name__)
 
@@ -14,7 +15,12 @@ def generate():
     if not idea or not idea.strip():
         return jsonify({"error": "'idea' field is required and cannot be empty"}), 400
 
+    new_project = Project(idea=idea)
+    db.session.add(new_project)
+    db.session.commit()
+
     return jsonify({
-        "received_idea": idea,
+        "id": new_project.id,
+        "received_idea": new_project.idea,
         "message": "Architecture generation coming soon"
     })
