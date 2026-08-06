@@ -24,6 +24,7 @@ function App() {
         setError(data.error || "Something went wrong");
       } else {
         setResult(data);
+        setIdea("");
       }
     } catch (err) {
       setError("Could not reach the server");
@@ -46,7 +47,13 @@ function App() {
       </button>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
-      {result && <pre>{JSON.stringify(result, null, 2)}</pre>}
+      {result && (
+  <div style={{ marginTop: "1rem", padding: "1rem", border: "1px solid #ccc", borderRadius: "8px" }}>
+    <p><strong>Project #{result.id}</strong> saved successfully</p>
+    <p>Idea: {result.received_idea}</p>
+    <p style={{ color: "gray" }}>{result.message}</p>
+  </div>
+)}
     </div>
   );
 }
