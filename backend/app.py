@@ -1,5 +1,6 @@
 import os
 from flask import Flask
+from flask_cors import CORS
 from dotenv import load_dotenv
 from flask_migrate import Migrate
 from models import db
@@ -11,6 +12,7 @@ load_dotenv()
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 
+CORS(app)
 db.init_app(app)
 migrate = Migrate(app, db)
 
