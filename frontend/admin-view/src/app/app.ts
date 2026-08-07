@@ -15,8 +15,16 @@ export class App implements OnInit {
   constructor(private projectService: ProjectService) {}
 
   ngOnInit(): void {
-    this.projectService.getProjects().subscribe((data) => {
+    this.projectService.getProjects().subscribe((data: Project[]) => {
       this.projects = data;
     });
+  }
+
+  trackByProjectId(index: number, project: Project): number {
+    return project.id;
+  }
+
+  pad(id: number): string {
+    return id.toString().padStart(4, '0');
   }
 }
