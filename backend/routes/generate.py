@@ -24,3 +24,17 @@ def generate():
         "received_idea": new_project.idea,
         "message": "Architecture generation coming soon"
     })
+
+@generate_bp.route("/projects", methods=["GET"])
+def get_projects():
+    projects = Project.query.order_by(Project.created_at.desc()).all()
+
+    return jsonify([
+        {
+            "id": p.id,
+            "idea": p.idea,
+            "status": p.status,
+            "created_at": p.created_at.isoformat()
+        }
+        for p in projects
+    ])
