@@ -1,9 +1,38 @@
-<div>
-  <h1>CloudForge AI — Admin View</h1>
+<div class="page">
+  <header class="page__header">
+    <div class="page__brand">
+      <span class="page__mark">▲</span>
+      <div>
+        <h1 class="page__title">CloudForge</h1>
+        <p class="page__subtitle">Admin · Project Log</p>
+      </div>
+    </div>
+    <div class="page__count">{{ projects.length }} submitted</div>
+  </header>
 
-  <ul>
-    <li *ngFor="let project of projects">
-      <strong>#{{ project.id }}</strong> — {{ project.idea }} ({{ project.status }})
-    </li>
-  </ul>
+  <main class="log">
+    <div class="log__row log__row--head">
+      <span class="log__col log__col--id">ID</span>
+      <span class="log__col log__col--idea">Idea</span>
+      <span class="log__col log__col--status">Status</span>
+      <span class="log__col log__col--time">Submitted</span>
+    </div>
+
+    <div
+      class="log__row"
+      [ngClass]="'log__row--' + project.status"
+      *ngFor="let project of projects; trackBy: trackByProjectId"
+    >
+      <span class="log__col log__col--id">#{{ pad(project.id) }}</span>
+      <span class="log__col log__col--idea">{{ project.idea }}</span>
+      <span class="log__col log__col--status">
+        <span class="status" [ngClass]="'status--' + project.status">{{ project.status }}</span>
+      </span>
+      <span class="log__col log__col--time">{{ project.created_at | date:'MMM d, HH:mm' }}</span>
+    </div>
+
+    <div class="log__empty" *ngIf="projects.length === 0">
+      No projects submitted yet.
+    </div>
+  </main>
 </div>
