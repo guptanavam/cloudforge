@@ -21,3 +21,4 @@ Users describe an app idea (e.g. "I want to build Netflix") and the platform wil
 - Database: TBD (Phase 2)
 - Cloud: AWS
 - AI: TBD (Phase 8+)test
+test
