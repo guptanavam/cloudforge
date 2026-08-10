@@ -20,4 +20,4 @@ Users describe an app idea (e.g. "I want to build Netflix") and the platform wil
 - Frontend: React, Angular
 - Database: TBD (Phase 2)
 - Cloud: AWS
-- AI: TBD (Phase 8+)
+- AI: TBD (Phase 8+)test
