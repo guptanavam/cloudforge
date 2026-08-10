@@ -1,3 +1,6 @@
+[![Backend Tests](https://github.com/guptanavam/cloudforge/actions/workflows/backend-tests.yml/badge.svg)](https://github.com/guptanavam/cloudforge/actions/workflows/backend-tests.yml)
+[![Docker Builds](https://github.com/guptanavam/cloudforge/actions/workflows/docker-builds.yml/badge.svg)](https://github.com/guptanavam/cloudforge/actions/workflows/docker-builds.yml)
+
 # CloudForge AI
 
 An AI-powered Cloud Architecture and DevOps Assistant.
