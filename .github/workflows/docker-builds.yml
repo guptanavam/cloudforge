@@ -1,0 +1,35 @@
+name: Docker Builds
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        service: [backend, frontend, admin]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Determine build context
+        id: context
+        run: |
+          if [ "${{ matrix.service }}" = "admin" ]; then
+            echo "path=./frontend/admin-view" >> "$GITHUB_OUTPUT"
+          else
+            echo "path=./${{ matrix.service }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build ${{ matrix.service }} image
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ steps.context.outputs.path }}
+          push: false
+          tags: cloudforge-${{ matrix.service }}:ci
