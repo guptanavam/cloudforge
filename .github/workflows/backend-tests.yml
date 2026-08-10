@@ -39,6 +39,13 @@ jobs:
         run: |
           pip install -r requirements.txt
 
+      - name: Run database migrations
+        working-directory: ./backend
+        env:
+          DATABASE_URL: postgresql://postgres:postgres123@localhost:5432/cloudforge_db
+        run: |
+          flask db upgrade    
+
       - name: Run tests
         working-directory: ./backend
         env:
